@@ -1,4 +1,4 @@
-# User Management
+# User Management Application
 
 A responsive user management dashboard built with React, TypeScript, and the JSONPlaceholder REST API.
 
