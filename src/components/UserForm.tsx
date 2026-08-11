@@ -1,11 +1,11 @@
 import {
     useState,
-    useEffect,
     type ChangeEvent,
-    type FormEvent,
+    type SubmitEvent,
 } from "react";
 import type { CreateUserData } from "../types/user";
 
+// Props required to create or update a user.
 interface UserFormProps {
     initialData?: CreateUserData;
     submitLabel?: string;
@@ -21,6 +21,8 @@ function UserForm({
     onCancel,
     submitting = false,
 }: UserFormProps) {
+
+    // Stores the current values entered in the form.
     const [formData, setFormData] = useState<CreateUserData>({
         name: initialData?.name ?? "",
         username: initialData?.username ?? "",
@@ -30,15 +32,8 @@ function UserForm({
     });
 
     const [formError, setFormError] = useState("");
-    useEffect(() => {
-        setFormData({
-            name: initialData?.name ?? "",
-            username: initialData?.username ?? "",
-            email: initialData?.email ?? "",
-            phone: initialData?.phone ?? "",
-            website: initialData?.website ?? "",
-        });
-    }, [initialData]);
+
+    // Update the corresponding form field when the user types.
     function handleChange(
         event: ChangeEvent<HTMLInputElement>
     ) {
@@ -49,9 +44,9 @@ function UserForm({
             [name]: value,
         }));
     }
-
+// Validate the form and submit the user data.
     async function handleSubmit(
-        event: FormEvent<HTMLFormElement>
+        event: SubmitEvent<HTMLFormElement>
     ) {
         event.preventDefault();
 
@@ -78,6 +73,7 @@ function UserForm({
         }
 
         try {
+            // Send the validated form data to the parent component.
             await onSubmit(formData);
         } catch {
             setFormError("Something went wrong. Please try again.");

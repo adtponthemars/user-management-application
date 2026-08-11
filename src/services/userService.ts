@@ -17,7 +17,7 @@ export async function getUsers(): Promise<User[]> {
   return response.json();
 }
 
-//Get a User
+//Get a single user
 export async function getUser(id: number): Promise<User> {
   const response = await fetch(`${API_URL}/${id}`);
 

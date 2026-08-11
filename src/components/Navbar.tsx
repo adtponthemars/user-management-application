@@ -14,7 +14,7 @@ function Navbar() {
           </div>
 
           <span className="text-lg font-bold tracking-tight text-white">
-            UserHub
+            UserDesk
           </span>
         </Link>
 

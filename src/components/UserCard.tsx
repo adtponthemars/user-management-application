@@ -2,6 +2,7 @@ import { Mail, MapPin, Pencil, Trash2 } from "lucide-react";
 import { Link } from "react-router";
 import type { User } from "../types/user";
 
+//Props required for UserCard
 interface UserCardProps {
   user: User;
   onEdit: (user: User) => void;

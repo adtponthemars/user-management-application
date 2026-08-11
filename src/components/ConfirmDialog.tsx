@@ -1,6 +1,7 @@
 import { AlertTriangle, X } from "lucide-react";
 import { useEffect } from "react";
 
+// Props required to control and display the confirmation dialog.
 interface ConfirmDialogProps {
     isOpen: boolean;
     title: string;
@@ -11,6 +12,7 @@ interface ConfirmDialogProps {
     onCancel: () => void;
 }
 
+// Displays a confirmation dialog 
 function ConfirmDialog({
     isOpen,
     title,
@@ -21,6 +23,7 @@ function ConfirmDialog({
     onCancel,
 }: ConfirmDialogProps) {
 
+    // Allows the dialog to be closed with the Escape key.
     useEffect(() => {
         if (!isOpen) {
             return;
@@ -37,13 +40,16 @@ function ConfirmDialog({
             handleKeyDown
         );
 
+        // Remove the keyboard event listener when the dialog closes.
         return () => {
             document.removeEventListener(
                 "keydown",
                 handleKeyDown
             );
-        };
+        };  
     }, [isOpen, loading, onCancel]);
+    
+    // Don't render the dialog when it is closed.
     if (!isOpen) {
         return null;
     }
@@ -74,7 +80,7 @@ function ConfirmDialog({
                     </button>
                 </div>
 
-                {/* Content */}
+                {/* Dialog title and message */}
                 <div className="mt-5">
                     <h2 className="text-lg font-semibold text-slate-900">
                         {title}
@@ -85,7 +91,7 @@ function ConfirmDialog({
                     </p>
                 </div>
 
-                {/* Actions */}
+                {/* Cancel and confirm buttons */}
                 <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
                     <button
                         type="button"

@@ -2,6 +2,7 @@ import { X } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect } from "react";
 
+// Props required to control and display the modal.
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -15,6 +16,8 @@ function Modal({
   title,
   children,
 }: ModalProps) {
+
+  // Close the modal when the Escape key is pressed.
   useEffect(() => {
   if (!isOpen) {
     return;
@@ -30,7 +33,8 @@ function Modal({
     "keydown",
     handleKeyDown
   );
-
+  
+// Remove the keyboard event listener when the modal closes.
   return () => {
     document.removeEventListener(
       "keydown",
@@ -39,6 +43,7 @@ function Modal({
   };
 }, [isOpen, onClose]);
 
+// Don't render the modal when it is closed.
   if (!isOpen) {
     return null;
   }

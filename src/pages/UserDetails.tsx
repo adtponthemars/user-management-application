@@ -19,6 +19,7 @@ function UserDetails() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
+// Fetch the user whenever the ID in the URL changes.
     useEffect(() => {
         async function fetchUser() {
             if (!id) {
@@ -44,7 +45,8 @@ function UserDetails() {
 
         fetchUser();
     }, [id]);
-
+    
+// Show a skeleton while user data is loading.
     if (loading) {
         return (
             <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
@@ -68,7 +70,7 @@ function UserDetails() {
             </div>
         );
     }
-
+// Show an error message if the user couldn't be loaded.
     if (error || !user) {
         return (
             <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">

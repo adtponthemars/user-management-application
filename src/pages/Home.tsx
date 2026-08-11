@@ -9,6 +9,7 @@ import Toast, {
     type ToastType,
 } from "../components/Toast";
 
+// API functions to perform CRUD operations
 import {
     createUser,
     deleteUser,
@@ -16,6 +17,7 @@ import {
     updateUser,
 } from "../services/userService";
 
+// TypeScript types used for user data.
 import type {
     CreateUserData,
     User,
@@ -76,7 +78,8 @@ function Home() {
     const filteredUsers = users.filter((user) =>
         user.name.toLowerCase().includes(search.toLowerCase())
     );
-    //Function to create new Users
+
+    //Create user
     async function handleCreateUser(
         userData: CreateUserData
     ) {
@@ -112,7 +115,8 @@ function Home() {
             setSubmitting(false);
         }
     }
-    //Function to update user
+
+    //Update user
     async function handleUpdateUser(
         userData: CreateUserData
     ) {
@@ -163,7 +167,8 @@ function Home() {
             setSubmitting(false);
         }
     }
-    //Function to delete user
+    
+    //Delete user
     async function handleDeleteUser() {
         if (!deletingUser) {
             return;
